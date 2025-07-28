@@ -11,16 +11,18 @@ const TodoPage = () => {
 
   const getTasks = async () => {
     const response = await api.get("/tasks");
-    setTodoList(response.data.data);
+    console.log("rrr", response);
+    setTodoList(response.data.task);
   };
   useEffect(() => {
     getTasks();
   }, []);
+
   const addTodo = async () => {
     try {
       const response = await api.post("/tasks", {
         task: todoValue,
-        isComplete: false,
+        isCompleted: false,
       });
       if (response.status === 200) {
         getTasks();
@@ -47,7 +49,7 @@ const TodoPage = () => {
     try {
       const task = todoList.find((item) => item._id === id);
       const response = await api.put(`/tasks/${id}`, {
-        isComplete: !task.isComplete,
+        isCompleted: !task.isCompleted,
       });
       if (response.status === 200) {
         getTasks();
@@ -74,7 +76,6 @@ const TodoPage = () => {
           </button>
         </Col>
       </Row>
-
       <TodoBoard
         todoList={todoList}
         deleteItem={deleteItem}
