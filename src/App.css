@@ -10,6 +10,15 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+
+.todo-item.item-complete {
+  border: 1px solid lightblue;
+  background-color: lightgrey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+}
 .todo-content {
   padding: 1em;
 }
